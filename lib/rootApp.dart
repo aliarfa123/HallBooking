@@ -41,14 +41,14 @@ class _RootAppState extends State<RootApp> {
     List bottomItems = [
       Icons.home,
       Icons.payment,
-      Icons.adb_outlined,
+      Icons.house_outlined,
       Icons.person,
     ];
     List textItems = ["Home", "Orders", "Banquets", "Account"];
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10),
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.08,
+      height: MediaQuery.of(context).size.height * 0.09,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -61,7 +61,7 @@ class _RootAppState extends State<RootApp> {
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5, top: 5),
         child: Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(textItems.length, (index) {
             return InkWell(
@@ -72,6 +72,7 @@ class _RootAppState extends State<RootApp> {
                   children: [
                     Icon(
                       bottomItems[index],
+                      size: 27,
                       color: pageIndex == index ? primary : Colors.grey,
                     ),
                     const SizedBox(
@@ -80,7 +81,7 @@ class _RootAppState extends State<RootApp> {
                     Text(
                       textItems[index],
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: pageIndex == index ? primary : Colors.grey,
                       ),
