@@ -22,11 +22,32 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            height: size.height * 0.35,
-            decoration: BoxDecoration(
-              color: primary,
-            ),
+          Stack(
+            children: [
+              Container(
+                height: size.height * 0.4,
+                decoration: BoxDecoration(
+                  color: primary,
+                ),
+              ),
+              SafeArea(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        color: white,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -52,7 +73,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                     5,
                     (index) => Icon(
                       Icons.star,
-                      size: 20,
+                      size: 22,
                       color: primary,
                     ),
                   ),
