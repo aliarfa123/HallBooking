@@ -1,4 +1,5 @@
 import 'package:banquet_booking/theme/color.dart';
+import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(color: Colors.blueGrey),
+                        decoration: const BoxDecoration(color: Colors.blueGrey),
                         child: Center(
                           child: Text(
                             'Item $i',
@@ -52,34 +53,47 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: size.height * 0.02,
             ),
-            const Text(
+            Text(
               'Most popular banquets',
+              style: homePage,
             ),
             SizedBox(
               height: size.height * 0.02,
             ),
-            // Container(
-            //   child: ListView.builder(
-            //     scrollDirection: Axis.horizontal,
-            //     itemCount: text.length,
-            //     itemBuilder: ((context, index) {
-            //       return Container(
-            //         decoration: BoxDecoration(
-            //           color: primary,
-            //           borderRadius: BorderRadius.circular(20),
-            //         ),
-            //         height: size.height * 0.2,
-            //         width: size.width * 0.4,
-            //         child: Center(
-            //           child: Text(
-            //             text[index],
-            //           ),
-            //         ),
-            //       );
-            //     }),
-            //   ),
-            // ),
-
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  text.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: size.height * 0.2,
+                      width: size.width * 0.4,
+                      child: Center(
+                        child: Text(
+                          text[index],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Text(
+              'Offers for you',
+              style: homePage,
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
             Container(
               decoration: BoxDecoration(
                 color: primary,
@@ -87,6 +101,40 @@ class _HomePageState extends State<HomePage> {
               ),
               height: size.height * 0.22,
               width: size.width * 0.9,
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Text(
+              'Categories',
+              style: homePage,
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  text.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: size.height * 0.2,
+                      width: size.width * 0.4,
+                      child: Center(
+                        child: Text(
+                          text[index],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
