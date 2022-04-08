@@ -15,14 +15,14 @@ var seeMore = TextStyle(
   color: primary,
   fontWeight: FontWeight.bold,
 );
-// TextStyle(
-//   fontSize: 15,
-//   color: primary,
-//   fontWeight: FontWeight.bold,
-// );
 
 var norm = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.bold,
   color: secondary,
+);
+var normWhite = TextStyle(
+  fontSize: 12,
+  fontWeight: FontWeight.bold,
+  color: white,
 );

@@ -65,7 +65,7 @@ class _AccountState extends State<Account> {
             end: Alignment.bottomCenter,
             colors: [
               Colors.white70,
-              primary.withOpacity(0.2),
+              primary.withOpacity(0.8),
             ],
             stops: [0.3, 1.1],
           ),

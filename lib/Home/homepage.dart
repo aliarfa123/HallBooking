@@ -1,3 +1,4 @@
+import 'package:banquet_booking/banquets/banquetsDetail.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.white70,
-                  primary.withOpacity(0.2),
+                  primary.withOpacity(0.8),
                 ],
               )),
               child: Column(
@@ -128,47 +129,69 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(left: 20.0),
                               child: Column(
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                          halls[index],
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BanquetsDetail()),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            halls[index],
+                                          ),
+                                        ),
+                                        color: primary,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          topLeft: Radius.circular(20),
                                         ),
                                       ),
-                                      color: primary,
-                                      borderRadius: BorderRadius.circular(20),
+                                      height: size.height * 0.25,
+                                      width: size.width * 0.5,
                                     ),
-                                    height: size.height * 0.3,
+                                  ),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                      ),
+                                    ),
+                                    height: size.height * 0.07,
                                     width: size.width * 0.5,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                    width: size.width * 0.45,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          names[index],
-                                          style: norm,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '4.0',
-                                              style: norm,
-                                            ),
-                                            const Icon(
-                                              Icons.star,
-                                              size: 16,
-                                              color: Colors.orange,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            names[index],
+                                            style: norm,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '4.0',
+                                                style: norm,
+                                              ),
+                                              const Icon(
+                                                Icons.star,
+                                                size: 16,
+                                                color: Colors.orange,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -207,63 +230,63 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  Container(
-                    width: size.width * 0.9,
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Top Services',
-                          style: homePage,
-                        ),
-                        // Text(
-                        //   'See More',
-                        //   style: seeMore,
-                        // ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.02,
-                  ),
-                  SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: List.generate(
-                        categories.length,
-                        (index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                colorFilter: ColorFilter.mode(
-                                    black.withOpacity(0.5), BlendMode.darken),
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                  categories[index],
-                                ),
-                              ),
-                              color: primary,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            height: size.height * 0.15,
-                            width: size.width * 0.9,
-                            child: Center(
-                              child: Text(
-                                text[index],
-                                style: TextStyle(
-                                  color: white,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                  // Container(
+                  //   width: size.width * 0.9,
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Row(
+                  //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Text(
+                  //         'Top Services',
+                  //         style: homePage,
+                  //       ),
+                  //       // Text(
+                  //       //   'See More',
+                  //       //   style: seeMore,
+                  //       // ),
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: size.height * 0.02,
+                  // ),
+                  // SingleChildScrollView(
+                  //   physics: const BouncingScrollPhysics(),
+                  //   scrollDirection: Axis.vertical,
+                  //   child: Column(
+                  //     children: List.generate(
+                  //       categories.length,
+                  //       (index) => Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Container(
+                  //           decoration: BoxDecoration(
+                  //             image: DecorationImage(
+                  //               colorFilter: ColorFilter.mode(
+                  //                   black.withOpacity(0.5), BlendMode.darken),
+                  //               fit: BoxFit.cover,
+                  //               image: AssetImage(
+                  //                 categories[index],
+                  //               ),
+                  //             ),
+                  //             color: primary,
+                  //             borderRadius: BorderRadius.circular(20),
+                  //           ),
+                  //           height: size.height * 0.15,
+                  //           width: size.width * 0.9,
+                  //           child: Center(
+                  //             child: Text(
+                  //               text[index],
+                  //               style: TextStyle(
+                  //                 color: white,
+                  //                 fontSize: 22,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),

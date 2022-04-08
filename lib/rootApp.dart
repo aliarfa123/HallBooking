@@ -24,9 +24,9 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     List<Widget> pages = [
       const HomePage(),
-      const Center(child: Text('asds')),
+      const Center(child: Text('Browse')),
       const Center(
-        child: Text('asds'),
+        child: Text('Categories'),
       ),
       const Account(),
     ];
@@ -39,17 +39,17 @@ class _RootAppState extends State<RootApp> {
   Widget getFooter() {
     List bottomItems = [
       Icons.home,
-      Icons.payment,
-      Icons.house_outlined,
+      Icons.search_rounded,
+      Icons.category_rounded,
       Icons.person,
     ];
-    List textItems = ["Home", "Orders", "Banquets", "Account"];
+    List textItems = ["Home", "Browse", "Categories", "Account"];
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10),
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.09,
       decoration: BoxDecoration(
-        color: primary.withOpacity(0.2),
+        color: primary.withOpacity(0.8),
         border: Border(
           top: BorderSide(
             width: 1,
@@ -80,7 +80,7 @@ class _RootAppState extends State<RootApp> {
                     Icon(
                       bottomItems[index],
                       size: 27,
-                      color: pageIndex == index ? primary : secondary,
+                      color: pageIndex == index ? primary : Colors.white70,
                     ),
                     const SizedBox(
                       height: 5,
@@ -90,7 +90,7 @@ class _RootAppState extends State<RootApp> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: pageIndex == index ? primary : secondary,
+                        color: pageIndex == index ? primary : Colors.white70,
                       ),
                     ),
                   ],
