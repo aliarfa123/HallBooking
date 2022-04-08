@@ -50,13 +50,21 @@ class _RootAppState extends State<RootApp> {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.09,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: primary.withOpacity(0.2),
         border: Border(
           top: BorderSide(
             width: 1,
             color: primary.withOpacity(0.1),
           ),
         ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topRight,
+        //   end: Alignment.bottomLeft,
+        //   colors: [
+        //     white,
+        //     primary.withOpacity(0.2),
+        //   ],
+        // ),
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5, top: 5),
@@ -73,7 +81,7 @@ class _RootAppState extends State<RootApp> {
                     Icon(
                       bottomItems[index],
                       size: 27,
-                      color: pageIndex == index ? primary : Colors.grey,
+                      color: pageIndex == index ? primary : secondary,
                     ),
                     const SizedBox(
                       height: 5,
@@ -83,7 +91,7 @@ class _RootAppState extends State<RootApp> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: pageIndex == index ? primary : Colors.grey,
+                        color: pageIndex == index ? primary : secondary,
                       ),
                     ),
                   ],

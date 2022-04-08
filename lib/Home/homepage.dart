@@ -15,36 +15,36 @@ class _HomePageState extends State<HomePage> {
     'assets/images/hall3.jpg',
     'assets/images/makeup.jpg',
     'assets/images/catering.jpeg',
-    'assets/images/marriage2.jpg',
+    'assets/images/cars.jpeg',
   ];
   List halls = [
-    'assets/images/hall1.jpg',
-    'assets/images/hall2.jpg',
     'assets/images/hall3.jpg',
+    'assets/images/hall2.jpg',
+    'assets/images/hall1.jpg',
     'assets/images/hall2.jpg',
   ];
   List text = [
-    'Halls',
-    'Makeup',
+    'Banquets',
+    'Beauty Parlors',
     'Catering',
-    'Cars',
+    'Rental Cars',
+  ];
+  List names = [
+    'Hall 1',
+    'Hall 2',
+    'Hall 3',
+    'Hall 4',
   ];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primary,
-        title: const Center(child: Text('Shaadi Karle')),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             CarouselSlider(
               options: CarouselOptions(
-                // autoPlay: true,
-                height: size.height * 0.25,
-                // aspectRatio: 1.0,
+                height: size.height * 0.33,
                 viewportFraction: 1,
               ),
               items: [
@@ -59,9 +59,20 @@ class _HomePageState extends State<HomePage> {
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              black.withOpacity(0.4), BlendMode.darken),
                           fit: BoxFit.cover,
                           image: AssetImage(
                             i,
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Shaadi Karle',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: white,
                           ),
                         ),
                       ),
@@ -70,151 +81,189 @@ class _HomePageState extends State<HomePage> {
                 );
               }).toList(),
             ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Most popular banquets',
-                    style: homePage,
-                  ),
-                  Text(
-                    'See More',
-                    style: seeMore,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  Row(
-                    children: List.generate(
-                      halls.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                halls[index],
-                              ),
-                            ),
-                            color: primary,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          height: size.height * 0.2,
-                          width: size.width * 0.4,
-                        ),
-                      ),
-                    ),
-                  ),
-                  // SizedBox(
-                  //   // height: size.height * 0.2,
-                  //   width: size.width * 0.4,
-                  //   child: Row(
-                  //     children: [Text('adsd')],
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Text(
-              'Offers for you',
-              style: homePage,
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
             Container(
               decoration: BoxDecoration(
-                image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        black.withOpacity(0.5), BlendMode.darken),
-                    fit: BoxFit.cover,
-                    image: const AssetImage('assets/images/wedding.jpg')),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              height: size.height * 0.22,
-              width: size.width * 0.9,
-              child: Center(
-                child: Text(
-                  'Get 20% off on multiple banquets',
-                  style: TextStyle(
-                    color: white,
-                    fontSize: 22,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Categories',
-                    style: homePage,
-                  ),
-                  Text(
-                    'See More',
-                    style: seeMore,
-                  ),
+                  gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white70,
+                  primary.withOpacity(0.2),
                 ],
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  categories.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
+              )),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.9,
+                    // padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Most popular banquets',
+                          style: homePage,
+                        ),
+                        Text(
+                          'See More',
+                          style: seeMore,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: List.generate(
+                            halls.length,
+                            (index) => Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(
+                                          halls[index],
+                                        ),
+                                      ),
+                                      color: primary,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    height: size.height * 0.3,
+                                    width: size.width * 0.5,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.45,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          names[index],
+                                          style: norm,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '4.0',
+                                              style: norm,
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              size: 16,
+                                              color: Colors.orange,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
                           colorFilter: ColorFilter.mode(
                               black.withOpacity(0.5), BlendMode.darken),
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                            categories[index],
-                          ),
-                        ),
-                        color: primary,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      height: size.height * 0.2,
-                      width: size.width * 0.4,
-                      child: Center(
-                        child: Text(
-                          text[index],
-                          style: TextStyle(
-                            color: white,
-                            fontSize: 22,
-                          ),
+                          image: const AssetImage('assets/images/wedding.jpg')),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: size.height * 0.22,
+                    width: size.width * 0.9,
+                    child: Center(
+                      child: Text(
+                        'Get 20% off on multiple banquets',
+                        style: TextStyle(
+                          color: white,
+                          fontSize: 22,
                         ),
                       ),
                     ),
                   ),
-                ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Container(
+                    width: size.width * 0.9,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Top Services',
+                          style: homePage,
+                        ),
+                        // Text(
+                        //   'See More',
+                        //   style: seeMore,
+                        // ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: List.generate(
+                        categories.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                colorFilter: ColorFilter.mode(
+                                    black.withOpacity(0.5), BlendMode.darken),
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  categories[index],
+                                ),
+                              ),
+                              color: primary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: size.height * 0.15,
+                            width: size.width * 0.9,
+                            child: Center(
+                              child: Text(
+                                text[index],
+                                style: TextStyle(
+                                  color: white,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           ],
