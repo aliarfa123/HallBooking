@@ -10,6 +10,7 @@ var homePage = TextStyle(
 );
 
 var seeMore = TextStyle(
+  decoration: TextDecoration.underline,
   fontSize: 15,
   color: primary,
   fontWeight: FontWeight.bold,

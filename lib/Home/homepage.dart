@@ -195,7 +195,8 @@ class _HomePageState extends State<HomePage> {
                     width: size.width * 0.9,
                     child: Center(
                       child: Text(
-                        'Get 20% off on multiple banquets',
+                        'Get 20% off on\n multiple banquets',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: white,
                           fontSize: 22,

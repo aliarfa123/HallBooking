@@ -1,3 +1,4 @@
+import 'package:banquet_booking/Account/account.dart';
 import 'package:banquet_booking/Home/homepage.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,7 @@ class _RootAppState extends State<RootApp> {
       const Center(
         child: Text('asds'),
       ),
-      const Center(
-        child: Text('asds'),
-      ),
+      const Account(),
     ];
     return IndexedStack(
       index: pageIndex,
