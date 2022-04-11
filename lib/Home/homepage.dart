@@ -227,7 +227,32 @@ class _HomePageState extends State<HomePage> {
                           image: const AssetImage('assets/images/wedding.jpg')),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    height: size.height * 0.22,
+                    height: size.height * 0.12,
+                    width: size.width * 0.9,
+                    child: Center(
+                      child: Text(
+                        'Get 20% off on\n multiple banquets',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: white,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              black.withOpacity(0.5), BlendMode.darken),
+                          fit: BoxFit.cover,
+                          image: const AssetImage('assets/images/hall1.jpg')),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: size.height * 0.12,
                     width: size.width * 0.9,
                     child: Center(
                       child: Text(
