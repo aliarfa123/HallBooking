@@ -1,3 +1,4 @@
+import 'package:banquet_booking/Home/browse.dart';
 import 'package:banquet_booking/banquets/banquetsDetail.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
@@ -107,9 +108,19 @@ class _HomePageState extends State<HomePage> {
                           'Most popular banquets',
                           style: homePage,
                         ),
-                        Text(
-                          'See More',
-                          style: seeMore,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Search(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'See More',
+                            style: seeMore,
+                          ),
                         ),
                       ],
                     ),
@@ -135,7 +146,10 @@ class _HomePageState extends State<HomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                BanquetsDetail()),
+                                                BanquetsDetail(
+                                                  image: halls[index],
+                                                  home: names[index],
+                                                )),
                                       );
                                     },
                                     child: Container(

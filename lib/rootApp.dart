@@ -1,4 +1,5 @@
 import 'package:banquet_booking/Account/account.dart';
+import 'package:banquet_booking/Home/browse.dart';
 import 'package:banquet_booking/Home/homepage.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     List<Widget> pages = [
       const HomePage(),
-      const Center(child: Text('Browse')),
+      Search(),
       const Center(
         child: Text('Categories'),
       ),

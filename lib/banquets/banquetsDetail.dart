@@ -3,13 +3,17 @@ import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:flutter/material.dart';
 
 class BanquetsDetail extends StatefulWidget {
-  const BanquetsDetail({Key? key}) : super(key: key);
+  var image;
+  var home;
+  BanquetsDetail({Key? key, required this.image, required this.home})
+      : super(key: key);
 
   @override
   State<BanquetsDetail> createState() => _BanquetsDetailState();
 }
 
 class _BanquetsDetailState extends State<BanquetsDetail> {
+  bool like = false;
   List buttonText = [
     'Book',
     'Enquiry',
@@ -27,8 +31,13 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
               Container(
                 height: size.height * 0.4,
                 decoration: BoxDecoration(
-                  color: primary,
-                ),
+                    // color: primary,
+                    image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    widget.image.toString(),
+                  ),
+                )),
               ),
               SafeArea(
                 child: Align(
@@ -38,10 +47,16 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                       Navigator.pop(context);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.arrow_back_rounded,
-                        color: white,
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                        radius: 15,
+                        backgroundColor: primary,
+                        child: Center(
+                          child: Icon(
+                            Icons.arrow_back_rounded,
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -55,11 +70,19 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Name',
+                  widget.home.toString(),
                   style: homePage,
                 ),
-                const Icon(
-                  Icons.favorite_border,
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      like = !like;
+                    });
+                  },
+                  child: Icon(
+                    like ? Icons.favorite_outlined : Icons.favorite_border,
+                    color: primary,
+                  ),
                 )
               ],
             ),
@@ -68,21 +91,13 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Row(
-                  children: List.generate(
-                    5,
-                    (index) => Icon(
-                      Icons.star,
-                      size: 22,
-                      color: primary,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
+                const Icon(
+                  Icons.star,
+                  size: 22,
+                  color: Colors.orange,
                 ),
                 Text(
-                  '1 Review',
+                  '(4.0)',
                   style: homePage,
                 ),
               ],
@@ -107,7 +122,36 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 ),
               ),
             ),
-          )
+          ),
+          // DefaultTabController(
+          //   initialIndex: 0,
+          //   length: 4,
+          //   child: Column(
+          //     children: [
+          //       TabBar(
+          //         indicatorColor: primary,
+          //         tabs: [
+          //           Tab(
+          //             icon: Icon(Icons.cloud_outlined, color: primary),
+          //           ),
+          //           Tab(
+          //             icon: Icon(
+          //               Icons.beach_access_sharp,
+          //               color: primary,
+          //             ),
+          //           ),
+          //           Tab(
+          //             icon: Icon(Icons.brightness_5_sharp, color: primary),
+          //           ),
+          //           Tab(
+          //             icon: Icon(Icons.ac_unit_sharp, color: primary),
+          //           ),
+          //         ],
+          //       ),
+
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
