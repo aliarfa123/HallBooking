@@ -8,6 +8,11 @@ var homePage = TextStyle(
   fontWeight: FontWeight.bold,
   color: secondary,
 );
+var homePageSmall = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  color: secondary,
+);
 
 var seeMore = TextStyle(
   decoration: TextDecoration.underline,
@@ -23,6 +28,11 @@ var norm = TextStyle(
 );
 var normWhite = TextStyle(
   fontSize: 12,
+  fontWeight: FontWeight.bold,
+  color: white,
+);
+var bigWhite = TextStyle(
+  fontSize: 30,
   fontWeight: FontWeight.bold,
   color: white,
 );

@@ -32,10 +32,10 @@ class _HomePageState extends State<HomePage> {
     'Rental Cars',
   ];
   List names = [
-    'Hall 1',
-    'Hall 2',
-    'Hall 3',
-    'Hall 4',
+    'Banquet Karimabad',
+    'Banquet Defence',
+    'Banquet North Nazimabad',
+    'Banquet Gulshan',
   ];
   @override
   Widget build(BuildContext context) {
@@ -183,9 +183,9 @@ class _HomePageState extends State<HomePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0, right: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                      child: Wrap(
+                                        alignment:
+                                            WrapAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             names[index],
