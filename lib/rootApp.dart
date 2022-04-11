@@ -1,4 +1,5 @@
 import 'package:banquet_booking/Account/account.dart';
+import 'package:banquet_booking/Home/bookings.dart';
 import 'package:banquet_booking/Home/browse.dart';
 import 'package:banquet_booking/Home/homepage.dart';
 import 'package:banquet_booking/theme/color.dart';
@@ -26,9 +27,7 @@ class _RootAppState extends State<RootApp> {
     List<Widget> pages = [
       const HomePage(),
       Search(),
-      const Center(
-        child: Text('Categories'),
-      ),
+      const BookingPage(),
       const Account(),
     ];
     return IndexedStack(
@@ -41,10 +40,10 @@ class _RootAppState extends State<RootApp> {
     List bottomItems = [
       Icons.home,
       Icons.search_rounded,
-      Icons.category_rounded,
+      Icons.receipt,
       Icons.person,
     ];
-    List textItems = ["Home", "Browse", "Categories", "Account"];
+    List textItems = ["Home", "Browse", "Booking", "Account"];
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10),
       width: double.infinity,

@@ -184,8 +184,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 8.0, right: 8.0),
                                       child: Wrap(
-                                        alignment:
-                                            WrapAlignment.spaceBetween,
+                                        alignment: WrapAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             names[index],
