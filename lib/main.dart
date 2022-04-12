@@ -1,6 +1,8 @@
+import 'package:banquet_booking/provider.dart';
 import 'package:banquet_booking/rootApp.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,15 +21,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      scrollBehavior: MyBehavior(),
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Lora',
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LikeProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        scrollBehavior: MyBehavior(),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          fontFamily: 'Lora',
+          primarySwatch: Colors.blue,
+        ),
+        home: const RootApp(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: const RootApp(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

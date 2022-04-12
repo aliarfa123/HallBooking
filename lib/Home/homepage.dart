@@ -1,5 +1,6 @@
 import 'package:banquet_booking/Home/browse.dart';
 import 'package:banquet_booking/banquets/banquetsDetail.dart';
+import 'package:banquet_booking/banquets/seemore.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,10 +15,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List categories = [
+    // 'assets/images/hall3.jpg',
+    // 'assets/images/makeup.jpg',
+    // 'assets/images/catering.jpeg',
+    // 'assets/images/cars.jpeg',
     'assets/images/hall3.jpg',
-    'assets/images/makeup.jpg',
-    'assets/images/catering.jpeg',
-    'assets/images/cars.jpeg',
+    'assets/images/hall2.jpg',
+    'assets/images/hall1.jpg',
+    'assets/images/hall2.jpg',
   ];
   List halls = [
     'assets/images/hall3.jpg',
@@ -27,9 +32,9 @@ class _HomePageState extends State<HomePage> {
   ];
   List text = [
     'Banquets',
-    'Beauty Parlors',
-    'Catering',
-    'Rental Cars',
+    'Marquees',
+    'Marriage Lawns',
+    'Birthday Parties',
   ];
   List names = [
     'Banquet Karimabad',
@@ -113,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Search(),
+                                builder: (context) => SeeMore(),
                               ),
                             );
                           },
@@ -145,11 +150,11 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                BanquetsDetail(
-                                                  image: halls[index],
-                                                  home: names[index],
-                                                )),
+                                          builder: (context) => BanquetsDetail(
+                                            image: halls[index],
+                                            home: names[index],
+                                          ),
+                                        ),
                                       );
                                     },
                                     child: Container(
@@ -161,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                         color: primary,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(20),
                                           topLeft: Radius.circular(20),
                                         ),
@@ -227,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                           image: const AssetImage('assets/images/wedding.jpg')),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    height: size.height * 0.12,
+                    height: size.height * 0.2,
                     width: size.width * 0.9,
                     child: Center(
                       child: Text(
@@ -252,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                           image: const AssetImage('assets/images/hall1.jpg')),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    height: size.height * 0.12,
+                    height: size.height * 0.2,
                     width: size.width * 0.9,
                     child: Center(
                       child: Text(
@@ -268,63 +273,59 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  // Container(
-                  //   width: size.width * 0.9,
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Row(
-                  //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         'Top Services',
-                  //         style: homePage,
-                  //       ),
-                  //       // Text(
-                  //       //   'See More',
-                  //       //   style: seeMore,
-                  //       // ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: size.height * 0.02,
-                  // ),
-                  // SingleChildScrollView(
-                  //   physics: const BouncingScrollPhysics(),
-                  //   scrollDirection: Axis.vertical,
-                  //   child: Column(
-                  //     children: List.generate(
-                  //       categories.length,
-                  //       (index) => Padding(
-                  //         padding: const EdgeInsets.all(8.0),
-                  //         child: Container(
-                  //           decoration: BoxDecoration(
-                  //             image: DecorationImage(
-                  //               colorFilter: ColorFilter.mode(
-                  //                   black.withOpacity(0.5), BlendMode.darken),
-                  //               fit: BoxFit.cover,
-                  //               image: AssetImage(
-                  //                 categories[index],
-                  //               ),
-                  //             ),
-                  //             color: primary,
-                  //             borderRadius: BorderRadius.circular(20),
-                  //           ),
-                  //           height: size.height * 0.15,
-                  //           width: size.width * 0.9,
-                  //           child: Center(
-                  //             child: Text(
-                  //               text[index],
-                  //               style: TextStyle(
-                  //                 color: white,
-                  //                 fontSize: 22,
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
+                  Container(
+                    width: size.width * 0.9,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Our Services',
+                          style: homePage,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: List.generate(
+                        categories.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                colorFilter: ColorFilter.mode(
+                                    black.withOpacity(0.5), BlendMode.darken),
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  categories[index],
+                                ),
+                              ),
+                              color: primary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: size.height * 0.15,
+                            width: size.width * 0.9,
+                            child: Center(
+                              child: Text(
+                                text[index],
+                                style: TextStyle(
+                                  color: white,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

@@ -1,6 +1,10 @@
+import 'package:banquet_booking/provider.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BanquetsDetail extends StatefulWidget {
   var image;
@@ -13,6 +17,13 @@ class BanquetsDetail extends StatefulWidget {
 }
 
 class _BanquetsDetailState extends State<BanquetsDetail> {
+  YoutubePlayerController controller = YoutubePlayerController(
+    initialVideoId: 'n1Ddj7nsKfg',
+    flags: const YoutubePlayerFlags(
+      autoPlay: true,
+      mute: false,
+    ),
+  );
   bool like = false;
   List images = [
     'assets/images/marriage1.jpg',
@@ -26,12 +37,12 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
   ];
   List buttonText = [
     'Book',
-    'Enquiry',
     'Call',
     'Review',
   ];
   @override
   Widget build(BuildContext context) {
+    bool? newLike = Provider.of<LikeProvider>(context).like;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -39,28 +50,57 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
           children: [
             Stack(
               children: [
-                Container(
-                  height: size.height * 0.4,
-                  decoration: BoxDecoration(
-                    // color: primary,
-                    image: DecorationImage(
-                      colorFilter: ColorFilter.mode(
-                        black.withOpacity(0.6),
-                        BlendMode.darken,
-                      ),
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        widget.image.toString(),
-                      ),
-                    ),
+                // Container(
+                //   height: size.height * 0.4,
+                //   decoration: BoxDecoration(
+                //     // color: primary,
+                //     image: DecorationImage(
+                //       colorFilter: ColorFilter.mode(
+                //         black.withOpacity(0.6),
+                //         BlendMode.darken,
+                //       ),
+                //       fit: BoxFit.cover,
+                //       image: AssetImage(
+                //         widget.image.toString(),
+                //       ),
+                //     ),
+                //   ),
+                //   child: Center(
+                //     child: Text(
+                //       widget.home.toString(),
+                //       style: bigWhite,
+                //     ),
+                //   ),
+                // ),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: size.height * 0.35,
+                    viewportFraction: 1,
                   ),
-                  child: Center(
-                    child: Text(
-                      widget.home.toString(),
-                      style: bigWhite,
-                    ),
-                  ),
+                  items: [
+                    'assets/images/hall2.jpg',
+                    'assets/images/hall3.jpg',
+                    'assets/images/hall2.jpg',
+                    'assets/images/hall1.jpg',
+                  ].map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                i,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
                 ),
+
                 SafeArea(
                   child: Align(
                     alignment: Alignment.topLeft,
@@ -92,7 +132,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Starting from Rs.65000/',
+                    widget.home.toString(),
                     style: homePage,
                   ),
                   Row(
@@ -111,12 +151,14 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                       ),
                       InkWell(
                         onTap: () {
-                          setState(() {
-                            like = !like;
-                          });
+                          Provider.of<LikeProvider>(context, listen: false)
+                              .changeLike(newLike);
+                          // setState(() {
+                          //   like = !like;
+                          // });
                         },
                         child: Icon(
-                          like
+                          newLike
                               ? Icons.favorite_outlined
                               : Icons.favorite_border,
                           color: primary,
@@ -139,19 +181,44 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
               ),
             ),
             SizedBox(
+              height: size.height * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'About Banquet:',
+                    style: homePage,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                children: [
+                  Text(
+                    "We, SKV Mahal in Mogappair, have an air-conditioned hall with a seating capacity of 1000 and a floating capacity of 1500. SKV Mahal in Mogappair provides a good number of facilities to organize an event. There is a generator backup for t the event to function smoothly during a power cut. SKV Mahal in Mogappair provides kitchen vessels and cooking fuel. The guests can prefer outdoor catering as well. The mahal provides air-conditioned rooms with locker facilities for the guests.",
+                    style: homePageSmall,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
               height: size.height * 0.02,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(
-                4,
+                buttonText.length,
                 (index) => Container(
                   decoration: BoxDecoration(
                     color: primary,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   height: size.height * 0.05,
-                  width: size.width * 0.22,
+                  width: size.width * 0.25,
                   child: Center(
                     child: Text(
                       buttonText[index],
@@ -164,42 +231,58 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             SizedBox(
               height: size.height * 0.02,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Images',
-                    style: homePage,
-                  ),
-                ],
+            Container(
+              alignment: Alignment.center,
+              width: size.width * 0.95,
+              child: YoutubePlayer(
+                liveUIColor: primary,
+                controller: controller,
+                progressIndicatorColor: primary,
               ),
             ),
-            SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  images.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: size.height * 0.24,
-                      width: size.width * 0.44,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            images[index],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            )
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         'Images',
+            //         style: homePage,
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SingleChildScrollView(
+            //   physics: const BouncingScrollPhysics(),
+            //   scrollDirection: Axis.horizontal,
+            //   child: Row(
+            //     children: List.generate(
+            //       images.length,
+            //       (index) => Padding(
+            //         padding: const EdgeInsets.all(8.0),
+            //         child: Container(
+            //           height: size.height * 0.25,
+            //           width: size.width * 0.5,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(8),
+            //             image: DecorationImage(
+            //               fit: BoxFit.cover,
+            //               image: AssetImage(
+            //                 images[index],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
           ],
         ),
       ),

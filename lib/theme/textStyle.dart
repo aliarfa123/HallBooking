@@ -20,6 +20,11 @@ var seeMore = TextStyle(
   color: primary,
   fontWeight: FontWeight.bold,
 );
+var banquetName = TextStyle(
+  fontSize: 18,
+  color: primary,
+  fontWeight: FontWeight.bold,
+);
 
 var norm = TextStyle(
   fontSize: 15,
