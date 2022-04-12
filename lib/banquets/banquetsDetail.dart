@@ -23,7 +23,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
   YoutubePlayerController controller = YoutubePlayerController(
     initialVideoId: 'n1Ddj7nsKfg',
     flags: const YoutubePlayerFlags(
-      autoPlay: false,
+      autoPlay: true,
       mute: false,
     ),
   );

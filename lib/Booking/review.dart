@@ -220,10 +220,10 @@ class _ReviewState extends State<Review> {
                                           left: 10,
                                           right: 10,
                                           bottom: 5),
-                                      child: Row(
+                                      child: Wrap(
                                         children: [
                                           Text(
-                                            'This marriage lawn is excellent. We had an\namazing experience here. Loved the decoration\nand arrangements a lot. We had a really good\ntime here. The food was also amazing and the\nstaff members were super professional and \nnice. Loved the venue!',
+                                            'This marriage lawn is excellent. We had an amazing experience here. Loved the decoration and arrangements a lot. We had a really good time here. The food was also amazing and the staff members were super professional and nice. Loved the venue!',
                                             style: normPrimary,
                                           ),
                                         ],
