@@ -41,3 +41,14 @@ var bigWhite = TextStyle(
   fontWeight: FontWeight.bold,
   color: white,
 );
+
+var pageTitle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: white,
+);
+var normPrimary = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  color: primary,
+);

@@ -10,6 +10,8 @@ class Review extends StatefulWidget {
 class _ReviewState extends State<Review> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }

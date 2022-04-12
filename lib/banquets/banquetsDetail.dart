@@ -1,3 +1,4 @@
+import 'package:banquet_booking/Booking/bookService.dart';
 import 'package:banquet_booking/Booking/review.dart';
 import 'package:banquet_booking/provider.dart';
 import 'package:banquet_booking/theme/color.dart';
@@ -46,12 +47,12 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
   @override
   Widget build(BuildContext context) {
     // List navigateButton = [
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => Review(),
-    //     ),
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => Review(),
     //   ),
+    // ),
     //   launch("tel://214324234"),
     //   Navigator.push(
     //     context,
@@ -287,23 +288,77 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(
-                buttonText.length,
-                (index) => Container(
-                  decoration: BoxDecoration(
-                    color: primary,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  height: size.height * 0.05,
-                  width: size.width * 0.25,
-                  child: Center(
-                    child: Text(
-                      buttonText[index],
-                      style: normWhite,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BookService(
+                          bname: widget.home,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: size.height * 0.05,
+                    width: size.width * 0.25,
+                    child: Center(
+                      child: Text(
+                        buttonText[0],
+                        style: normWhite,
+                      ),
                     ),
                   ),
                 ),
-              ),
+                InkWell(
+                  onTap: () {
+                    launch('tel://2345678');
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: size.height * 0.05,
+                    width: size.width * 0.25,
+                    child: Center(
+                      child: Text(
+                        buttonText[1],
+                        style: normWhite,
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Review(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: size.height * 0.05,
+                    width: size.width * 0.25,
+                    child: Center(
+                      child: Text(
+                        buttonText[2],
+                        style: normWhite,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: size.height * 0.02,
