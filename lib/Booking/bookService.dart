@@ -18,6 +18,7 @@ class _BookServiceState extends State<BookService> {
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = white;
     String time = 'Not Set';
     DateTime selectedDate = DateTime.now();
     Future<void> _selectDate(BuildContext context) async {
@@ -31,6 +32,7 @@ class _BookServiceState extends State<BookService> {
               data: Theme.of(context).copyWith(
                 colorScheme: ColorScheme.light(
                   primary: primary,
+                  background: backgroundColor,
                   onPrimary: Colors.white,
                   onSurface: Colors.black,
                 ),
