@@ -1,8 +1,10 @@
+import 'package:banquet_booking/Booking/review.dart';
 import 'package:banquet_booking/provider.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -20,7 +22,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
   YoutubePlayerController controller = YoutubePlayerController(
     initialVideoId: 'n1Ddj7nsKfg',
     flags: const YoutubePlayerFlags(
-      autoPlay: true,
+      autoPlay: false,
       mute: false,
     ),
   );
@@ -40,8 +42,25 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
     'Call',
     'Review',
   ];
+
   @override
   Widget build(BuildContext context) {
+    // List navigateButton = [
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => Review(),
+    //     ),
+    //   ),
+    //   launch("tel://214324234"),
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => Review(),
+    //     ),
+    //   ),
+    // ];
+
     bool? newLike = Provider.of<LikeProvider>(context).like;
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -72,33 +91,91 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 //     ),
                 //   ),
                 // ),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: size.height * 0.35,
-                    viewportFraction: 1,
-                  ),
-                  items: [
-                    'assets/images/hall2.jpg',
-                    'assets/images/hall3.jpg',
-                    'assets/images/hall2.jpg',
-                    'assets/images/hall1.jpg',
-                  ].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                i,
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            insetPadding: EdgeInsets.all(0),
+                            actions: [
+                              SizedBox(
+                                height: size.height * 0.8,
+                                width: size.width,
+                                child: CarouselSlider(
+                                  options: CarouselOptions(
+                                    height: size.height * 0.4,
+                                    viewportFraction: 1,
+                                  ),
+                                  items: [
+                                    'assets/images/hall2.jpg',
+                                    'assets/images/hall3.jpg',
+                                    'assets/images/hall2.jpg',
+                                    'assets/images/hall1.jpg',
+                                  ].map((i) {
+                                    return Builder(
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          alignment: Alignment.topRight,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(
+                                                i,
+                                              ),
+                                            ),
+                                          ),
+                                          child: IconButton(
+                                            icon: Icon(
+                                              Icons.cancel_rounded,
+                                              color: black,
+                                              size: 30,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: size.height * 0.35,
+                      viewportFraction: 1,
+                    ),
+                    items: [
+                      'assets/images/hall2.jpg',
+                      'assets/images/hall3.jpg',
+                      'assets/images/hall2.jpg',
+                      'assets/images/hall1.jpg',
+                    ].map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  i,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
                 ),
 
                 SafeArea(

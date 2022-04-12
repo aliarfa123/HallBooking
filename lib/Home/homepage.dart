@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     'Banquets',
     'Marquees',
     'Marriage Lawns',
-    'Birthday Parties',
+    'Ball Room',
   ];
   List names = [
     'Banquet Karimabad',
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.02,
                   ),
                   SizedBox(
-                    width: size.width * 0.9,
+                    width: size.width * 0.95,
                     // padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                           children: List.generate(
                             halls.length,
                             (index) => Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
+                              padding: const EdgeInsets.only(left: 10.0),
                               child: Column(
                                 children: [
                                   GestureDetector(
@@ -230,10 +230,10 @@ class _HomePageState extends State<HomePage> {
                               black.withOpacity(0.5), BlendMode.darken),
                           fit: BoxFit.cover,
                           image: const AssetImage('assets/images/wedding.jpg')),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     height: size.height * 0.2,
-                    width: size.width * 0.9,
+                    width: size.width * 0.95,
                     child: Center(
                       child: Text(
                         'Get 20% off on\n multiple banquets',
@@ -243,6 +243,126 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 22,
                         ),
                       ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.95,
+                    // padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Budget banquets',
+                          style: homePage,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SeeMore(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'See More',
+                            style: seeMore,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: List.generate(
+                            halls.length,
+                            (index) => Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => BanquetsDetail(
+                                            image: halls[index],
+                                            home: names[index],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            halls[index],
+                                          ),
+                                        ),
+                                        color: primary,
+                                        borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          topLeft: Radius.circular(20),
+                                        ),
+                                      ),
+                                      height: size.height * 0.25,
+                                      width: size.width * 0.5,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                      ),
+                                    ),
+                                    height: size.height * 0.07,
+                                    width: size.width * 0.5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 8.0),
+                                      child: Wrap(
+                                        alignment: WrapAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            names[index],
+                                            style: norm,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '4.0',
+                                                style: norm,
+                                              ),
+                                              const Icon(
+                                                Icons.star,
+                                                size: 16,
+                                                color: Colors.orange,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -255,10 +375,10 @@ class _HomePageState extends State<HomePage> {
                               black.withOpacity(0.5), BlendMode.darken),
                           fit: BoxFit.cover,
                           image: const AssetImage('assets/images/hall1.jpg')),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     height: size.height * 0.2,
-                    width: size.width * 0.9,
+                    width: size.width * 0.95,
                     child: Center(
                       child: Text(
                         'Get 20% off on\n multiple banquets',
@@ -274,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                     height: size.height * 0.02,
                   ),
                   Container(
-                    width: size.width * 0.9,
+                    width: size.width * 0.95,
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,17 +421,17 @@ class _HomePageState extends State<HomePage> {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 colorFilter: ColorFilter.mode(
-                                    black.withOpacity(0.5), BlendMode.darken),
+                                    black.withOpacity(0.4), BlendMode.darken),
                                 fit: BoxFit.cover,
                                 image: AssetImage(
                                   categories[index],
                                 ),
                               ),
                               color: primary,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             height: size.height * 0.15,
-                            width: size.width * 0.9,
+                            width: size.width * 0.95,
                             child: Center(
                               child: Text(
                                 text[index],
