@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   List names = [
     'Banquet Karimabad',
     'Banquet Defence',
-    'Banquet North Nazimabad',
+    'Banquet Nazimabad',
     'Banquet Gulshan',
   ];
   @override
@@ -167,8 +167,8 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         color: primary,
                                         borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
                                         ),
                                       ),
                                       height: size.height * 0.25,
@@ -179,37 +179,59 @@ class _HomePageState extends State<HomePage> {
                                     decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
                                     ),
                                     height: size.height * 0.07,
                                     width: size.width * 0.5,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0),
-                                      child: Wrap(
-                                        alignment: WrapAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            names[index],
-                                            style: norm,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '4.0',
-                                                style: norm,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                names[index],
+                                                style: normal(context),
                                               ),
-                                              const Icon(
-                                                Icons.star,
-                                                size: 16,
-                                                color: Colors.orange,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                'Rs. 65000',
+                                                style: homePageSmall,
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: List.generate(
+                                                    5,
+                                                    (index) => const Icon(
+                                                      Icons.star,
+                                                      color: Colors.orange,
+                                                      size: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
@@ -223,27 +245,45 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
-                              black.withOpacity(0.5), BlendMode.darken),
-                          fit: BoxFit.cover,
-                          image: const AssetImage('assets/images/wedding.jpg')),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    height: size.height * 0.2,
-                    width: size.width * 0.95,
-                    child: Center(
-                      child: Text(
-                        'Get 20% off on\n multiple banquets',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: white,
-                          fontSize: 22,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/wedding.jpg'),
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                          ),
+                        ),
+                        height: size.height * 0.2,
+                        width: size.width * 0.65,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
+                          ),
+                        ),
+                        height: size.height * 0.2,
+                        width: size.width * 0.3,
+                        child: Center(
+                          child: Text(
+                            'Get 20% off on multiple banquets',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: white,
+                              fontSize: 22,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                   SizedBox(
                     height: size.height * 0.02,
@@ -267,9 +307,19 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
-                          child: Text(
-                            'See More',
-                            style: seeMore,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: primary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: size.width * 0.25,
+                            height: size.height * 0.04,
+                            child: Center(
+                              child: Text(
+                                'See More',
+                                style: seeMore,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -312,8 +362,8 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         color: primary,
                                         borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
                                         ),
                                       ),
                                       height: size.height * 0.25,
@@ -324,37 +374,58 @@ class _HomePageState extends State<HomePage> {
                                     decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
                                       ),
                                     ),
                                     height: size.height * 0.07,
                                     width: size.width * 0.5,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0),
-                                      child: Wrap(
-                                        alignment: WrapAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            names[index],
-                                            style: norm,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '4.0',
-                                                style: norm,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                names[index],
+                                                style: normal(context),
                                               ),
-                                              const Icon(
-                                                Icons.star,
-                                                size: 16,
-                                                color: Colors.orange,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: Text(
+                                                'Rs. 65000',
+                                                style: homePageSmall,
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: List.generate(
+                                                        5,
+                                                        (index) => const Icon(
+                                                              Icons.star,
+                                                              color:
+                                                                  Colors.orange,
+                                                              size: 14,
+                                                            ))),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
@@ -368,27 +439,45 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: size.height * 0.02,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
-                              black.withOpacity(0.5), BlendMode.darken),
-                          fit: BoxFit.cover,
-                          image: const AssetImage('assets/images/hall1.jpg')),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    height: size.height * 0.2,
-                    width: size.width * 0.95,
-                    child: Center(
-                      child: Text(
-                        'Get 20% off on\n multiple banquets',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: white,
-                          fontSize: 22,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/hall2.jpg'),
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                          ),
+                        ),
+                        height: size.height * 0.2,
+                        width: size.width * 0.65,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
+                          ),
+                        ),
+                        height: size.height * 0.2,
+                        width: size.width * 0.3,
+                        child: Center(
+                          child: Text(
+                            'Get 20% off on multiple banquets',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: white,
+                              fontSize: 22,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                   SizedBox(
                     height: size.height * 0.02,

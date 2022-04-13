@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         scrollBehavior: MyBehavior(),
         title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: 'Lora',
+          fontFamily: 'PlusJakartaSans',
           primarySwatch: Colors.blue,
         ),
         home: const RootApp(),

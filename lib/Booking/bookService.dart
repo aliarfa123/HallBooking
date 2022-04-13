@@ -1,7 +1,6 @@
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class BookService extends StatefulWidget {
   var bname;
@@ -18,8 +17,6 @@ class _BookServiceState extends State<BookService> {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = white;
-    String time = 'Not Set';
     DateTime selectedDate = DateTime.now();
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
@@ -32,7 +29,6 @@ class _BookServiceState extends State<BookService> {
               data: Theme.of(context).copyWith(
                 colorScheme: ColorScheme.light(
                   primary: primary,
-                  background: backgroundColor,
                   onPrimary: Colors.white,
                   onSurface: Colors.black,
                 ),
@@ -135,24 +131,7 @@ class _BookServiceState extends State<BookService> {
                               style: banquetName,
                             ),
                             TextFormField(
-                              onTap: () {
-                                DatePicker.showTimePicker(context,
-                                    theme: const DatePickerTheme(
-                                      containerHeight: 210.0,
-                                    ),
-                                    showTitleActions: true, onConfirm: (_time) {
-                                  print(
-                                      'confirm ${_time.toString().split(' ').last}');
-                                  time =
-                                      '${_time.hour}:${_time.minute}:${_time.second}';
-                                  setState(() {
-                                    print(time);
-                                  });
-                                },
-                                    currentTime: DateTime.now(),
-                                    locale: LocaleType.en);
-                                setState(() {});
-                              },
+                              onTap: () {},
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'Time',
@@ -222,3 +201,21 @@ class _BookServiceState extends State<BookService> {
     );
   }
 }
+
+
+// DatePicker.showTimePicker(context,
+                                //     theme: const DatePickerTheme(
+                                //       containerHeight: 210.0,
+                                //     ),
+                                //     showTitleActions: true, onConfirm: (_time) {
+                                //   print(
+                                //       'confirm ${_time.toString().split(' ').last}');
+                                //   time =
+                                //       '${_time.hour}:${_time.minute}:${_time.second}';
+                                //   setState(() {
+                                //     print(time);
+                                //   });
+                                // },
+                                //     currentTime: DateTime.now(),
+                                //     locale: LocaleType.en);
+                                // setState(() {});

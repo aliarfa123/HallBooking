@@ -9,7 +9,7 @@ var homePage = TextStyle(
   color: secondary,
 );
 var homePageSmall = TextStyle(
-  fontSize: 16,
+  fontSize: 12,
   fontWeight: FontWeight.bold,
   color: secondary,
 );
@@ -17,7 +17,7 @@ var homePageSmall = TextStyle(
 var seeMore = TextStyle(
   decoration: TextDecoration.underline,
   fontSize: 15,
-  color: primary,
+  color: white,
   fontWeight: FontWeight.bold,
 );
 var banquetName = TextStyle(
@@ -31,6 +31,16 @@ var norm = TextStyle(
   fontWeight: FontWeight.bold,
   color: secondary,
 );
+
+normal(BuildContext context) {
+  var normal = TextStyle(
+    fontSize: MediaQuery.of(context).size.width * 0.04,
+    fontWeight: FontWeight.bold,
+    color: secondary,
+  );
+  return normal;
+}
+
 var normWhite = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.bold,

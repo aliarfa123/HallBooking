@@ -172,7 +172,11 @@ class _ReviewState extends State<Review> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 10, left: 15, right: 15, bottom: 0),
+                              top: 10,
+                              left: 15,
+                              right: 15,
+                              bottom: 0,
+                            ),
                             child: Container(
                               height: size.height * 0.23,
                               width: size.width * 1,

@@ -5,9 +5,11 @@ import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:photo_view/photo_view.dart';
 
 class BanquetsDetail extends StatefulWidget {
   var image;
@@ -20,14 +22,21 @@ class BanquetsDetail extends StatefulWidget {
 }
 
 class _BanquetsDetailState extends State<BanquetsDetail> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   YoutubePlayerController controller = YoutubePlayerController(
     initialVideoId: 'n1Ddj7nsKfg',
     flags: const YoutubePlayerFlags(
-      autoPlay: true,
+      autoPlay: false,
       mute: false,
     ),
   );
   bool like = false;
+  final imageList = [
+    'assets/images/hall3.jpg',
+    'assets/images/hall2.jpg',
+    'assets/images/hall1.jpg',
+    'assets/images/hall2.jpg',
+  ];
   List images = [
     'assets/images/marriage1.jpg',
     'assets/images/marriage2.jpg',
@@ -65,86 +74,123 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
     bool? newLike = Provider.of<LikeProvider>(context).like;
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
-                // Container(
-                //   height: size.height * 0.4,
-                //   decoration: BoxDecoration(
-                //     // color: primary,
-                //     image: DecorationImage(
-                //       colorFilter: ColorFilter.mode(
-                //         black.withOpacity(0.6),
-                //         BlendMode.darken,
-                //       ),
-                //       fit: BoxFit.cover,
-                //       image: AssetImage(
-                //         widget.image.toString(),
-                //       ),
-                //     ),
-                //   ),
-                //   child: Center(
-                //     child: Text(
-                //       widget.home.toString(),
-                //       style: bigWhite,
-                //     ),
-                //   ),
-                // ),
                 InkWell(
                   onTap: () {
                     showDialog(
                         context: context,
-                        builder: (BuildContext context) {
+                        builder: (dialogContex) {
                           return AlertDialog(
                             backgroundColor: Colors.transparent,
-                            insetPadding: EdgeInsets.all(0),
+                            insetPadding: const EdgeInsets.all(0),
                             actions: [
-                              SizedBox(
-                                height: size.height * 0.8,
-                                width: size.width,
-                                child: CarouselSlider(
-                                  options: CarouselOptions(
-                                    height: size.height * 0.4,
-                                    viewportFraction: 1,
+                              Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      // color: Colors.transparent,
+                                      height: size.height * 0.8,
+                                      width: size.width * 1,
+                                      child: PhotoViewGallery.builder(
+                                        itemCount: imageList.length,
+                                        builder: (dialogContex, index) {
+                                          return PhotoViewGalleryPageOptions(
+                                            imageProvider: AssetImage(
+                                              imageList[index],
+                                            ),
+                                            minScale: PhotoViewComputedScale
+                                                .contained,
+                                            maxScale: PhotoViewComputedScale
+                                                    .contained *
+                                                4,
+                                          );
+                                        },
+                                        // scrollPhysics: BouncingScrollPhysics(),
+                                        // backgroundDecoration: BoxDecoration(
+                                        //   borderRadius:BorderRadius.all(Radius.circular(20)),
+                                        //   color: Theme.of(context).canvasColor,
+                                        // ),
+                                        // enableRotation: true,
+                                        // loadingBuilder: (context, event) => Center(
+                                        //   child: Container(
+                                        //     width: 30.0,
+                                        //     height: 30.0,
+                                        //     child: CircularProgressIndicator(
+                                        //       backgroundColor:Colors.orange,
+                                        //       value: event == null
+                                        //           ? 0
+                                        //           : event.cumulativeBytesLoaded / event.expectedTotalBytes,
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                      ),
+                                    ),
                                   ),
-                                  items: [
-                                    'assets/images/hall2.jpg',
-                                    'assets/images/hall3.jpg',
-                                    'assets/images/hall2.jpg',
-                                    'assets/images/hall1.jpg',
-                                  ].map((i) {
-                                    return Builder(
-                                      builder: (BuildContext context) {
-                                        return Container(
-                                          alignment: Alignment.topRight,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                i,
-                                              ),
-                                            ),
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(
-                                              Icons.cancel_rounded,
-                                              color: black,
-                                              size: 30,
-                                            ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        );
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.cancel_rounded,
+                                        color: white,
+                                        size: 30,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(dialogContex);
                                       },
-                                    );
-                                  }).toList(),
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
+                              // SizedBox(
+                              //   height: size.height * 0.8,
+                              //   width: size.width,
+                              //   child: CarouselSlider(
+                              //     options: CarouselOptions(
+                              //       height: size.height * 0.4,
+                              //       viewportFraction: 1,
+                              //     ),
+                              //     items: [
+                              //       'assets/images/hall2.jpg',
+                              //       'assets/images/hall3.jpg',
+                              //       'assets/images/hall2.jpg',
+                              //       'assets/images/hall1.jpg',
+                              //     ].map((i) {
+                              //       return Builder(
+                              //         builder: (BuildContext context) {
+                              //           return Container(
+                              //             alignment: Alignment.topRight,
+                              //             width:
+                              //                 MediaQuery.of(context).size.width,
+                              //             decoration: BoxDecoration(
+                              //               image: DecorationImage(
+                              //                 fit: BoxFit.cover,
+                              //                 image: AssetImage(
+                              //                   i,
+                              //                 ),
+                              //               ),
+                              //             ),
+                              //             child: IconButton(
+                              //               icon: Icon(
+                              //                 Icons.cancel_rounded,
+                              //                 color: black,
+                              //                 size: 30,
+                              //               ),
+                              //               onPressed: () {
+                              //                 Navigator.pop(context);
+                              //               },
+                              //             ),
+                              //           );
+                              //         },
+                              //       );
+                              //     }).toList(),
+                              //   ),
+                              // ),
                             ],
                           );
                         });
@@ -178,7 +224,6 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                     }).toList(),
                   ),
                 ),
-
                 SafeArea(
                   child: Align(
                     alignment: Alignment.topLeft,
@@ -252,7 +297,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
               child: Wrap(
                 children: [
                   Text(
-                    'Defence Phase 1, Adjacent PSO Pump, Near KPT Interchange، Defence View Housing Society, Karachi, Karachi City, Sindh 75500',
+                    'Defence Phase 1, Adjacent PSO Pump, Near KPT InterchangeØŒ Defence View Housing Society, Karachi, Karachi City, Sindh 75500',
                     style: homePageSmall,
                   ),
                 ],
