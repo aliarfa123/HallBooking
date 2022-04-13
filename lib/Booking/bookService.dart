@@ -100,7 +100,7 @@ class _BookServiceState extends State<BookService> {
                       color: white,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
-                  height: size.height * 0.47,
+                  height: size.height * 0.62,
                   child: Padding(
                     padding: EdgeInsets.only(top: 20, left: 20, right: 15),
                     child: Column(
@@ -159,6 +159,23 @@ class _BookServiceState extends State<BookService> {
                         Wrap(
                           children: [
                             Text(
+                              'Your Guests: (Max 500)',
+                              style: banquetName,
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Guests',
+                              ),
+                              // keyboardType: TextInputType.multiline,
+                              // minLines: ,
+                              // maxLines: 5,
+                            ),
+                          ],
+                        ),
+                        Wrap(
+                          children: [
+                            Text(
                               'Description:',
                               style: banquetName,
                             ),
@@ -172,6 +189,29 @@ class _BookServiceState extends State<BookService> {
                               maxLines: 10,
                             ),
                           ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.square,
+                                size: 20,
+                                color: primary,
+                              ),
+                              Text('Booked'),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Icon(
+                                Icons.square,
+                                size: 20,
+                                color: grey,
+                              ),
+                              Text('Available'),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -192,19 +232,41 @@ class _BookServiceState extends State<BookService> {
                         //               bname: widget.home,
                         //             )));
                       }),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        height: size.height * 0.055,
-                        width: size.width * 0.3,
-                        child: Center(
-                          child: Text(
-                            'Book Now',
-                            style: normPrimary,
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: size.height * 0.055,
+                            width: size.width * 0.3,
+                            child: Center(
+                              child: Text(
+                                'Book Now',
+                                style: normPrimary,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            width: size.width * 0.1,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: size.height * 0.055,
+                            width: size.width * 0.3,
+                            child: Center(
+                              child: Text(
+                                'Coustomer\nsuport',
+                                textAlign: TextAlign.center,
+                                style: normPrimary,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
