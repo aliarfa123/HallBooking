@@ -14,6 +14,11 @@ class _BookServiceState extends State<BookService> {
   var bname;
 
   _BookServiceState(bname);
+  String dropdownvalue = 'Night';
+  var items = [
+    'Morning',
+    'Night',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +100,7 @@ class _BookServiceState extends State<BookService> {
                       color: white,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
-                  height: size.height * 0.45,
+                  height: size.height * 0.47,
                   child: Padding(
                     padding: EdgeInsets.only(top: 20, left: 20, right: 15),
                     child: Column(
@@ -130,13 +135,24 @@ class _BookServiceState extends State<BookService> {
                               'Select Time:',
                               style: banquetName,
                             ),
-                            TextFormField(
-                              onTap: () {},
+                            DropdownButtonFormField(
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'Time',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
                               ),
-                              keyboardType: TextInputType.datetime,
+                              elevation: 8,
+                              value: dropdownvalue,
+                              icon: Icon(Icons.keyboard_arrow_down),
+                              items: items.map((String items) {
+                                return DropdownMenuItem(
+                                    value: items, child: Text(items));
+                              }).toList(),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  dropdownvalue = newValue.toString();
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -163,7 +179,7 @@ class _BookServiceState extends State<BookService> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -181,11 +197,11 @@ class _BookServiceState extends State<BookService> {
                           color: white,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        height: size.height * 0.05,
-                        width: size.width * 0.25,
+                        height: size.height * 0.055,
+                        width: size.width * 0.3,
                         child: Center(
                           child: Text(
-                            'Book',
+                            'Book Now',
                             style: normPrimary,
                           ),
                         ),

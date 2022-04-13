@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 var homePage = TextStyle(
-  fontSize: 20,
+  fontSize: 22,
   fontWeight: FontWeight.bold,
   color: secondary,
 );
+var table = TextStyle(
+  fontSize: 18,
+  // fontWeight: FontWeight.bold,
+  color: secondary,
+);
 var homePageSmall = TextStyle(
-  fontSize: 12,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
   color: secondary,
 );
@@ -20,6 +25,14 @@ var seeMore = TextStyle(
   color: white,
   fontWeight: FontWeight.bold,
 );
+
+var seeMorePrimary = TextStyle(
+  decoration: TextDecoration.underline,
+  fontSize: 15,
+  color: primary,
+  fontWeight: FontWeight.bold,
+);
+
 var banquetName = TextStyle(
   fontSize: 18,
   color: primary,
@@ -42,7 +55,7 @@ normal(BuildContext context) {
 }
 
 var normWhite = TextStyle(
-  fontSize: 12,
+  fontSize: 15,
   fontWeight: FontWeight.bold,
   color: white,
 );

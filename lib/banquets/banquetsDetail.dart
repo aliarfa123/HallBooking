@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 
+// ignore: must_be_immutable
 class BanquetsDetail extends StatefulWidget {
   var image;
   var home;
@@ -22,7 +23,6 @@ class BanquetsDetail extends StatefulWidget {
 }
 
 class _BanquetsDetailState extends State<BanquetsDetail> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   YoutubePlayerController controller = YoutubePlayerController(
     initialVideoId: 'n1Ddj7nsKfg',
     flags: const YoutubePlayerFlags(
@@ -48,33 +48,35 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
     'assets/images/hall2.jpg',
   ];
   List buttonText = [
-    'Book',
+    'Book Now',
     'Call',
-    'Review',
+    'Reviews',
   ];
-
+  List name = [
+    'Abdullah',
+    'Umar',
+  ];
+  List rating = [
+    '4.5',
+    '5',
+  ];
+  String review =
+      'This marriage lawn is excellent. We had an\namazing experience here. Loved the decoration and arrangements a lot. We had a really good time here. The food was also amazing and the staff members were super professional and nice. Loved the venue!';
   @override
   Widget build(BuildContext context) {
-    // List navigateButton = [
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => Review(),
-    //   ),
-    // ),
-    //   launch("tel://214324234"),
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => Review(),
-    //     ),
-    //   ),
-    // ];
-
     bool? newLike = Provider.of<LikeProvider>(context).like;
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      key: _scaffoldKey,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          launch('tel://2345678');
+        },
+        child: CircleAvatar(
+          backgroundColor: primary,
+          radius: 30,
+          child: Icon(Icons.call, color: white, size: 25),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -98,11 +100,11 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                                       height: size.height * 0.8,
                                       width: size.width * 1,
                                       child: PhotoViewGallery.builder(
-                                        itemCount: imageList.length,
+                                        itemCount: 1,
                                         builder: (dialogContex, index) {
                                           return PhotoViewGalleryPageOptions(
                                             imageProvider: AssetImage(
-                                              imageList[index],
+                                              widget.image,
                                             ),
                                             minScale: PhotoViewComputedScale
                                                 .contained,
@@ -111,24 +113,6 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                                                 4,
                                           );
                                         },
-                                        // scrollPhysics: BouncingScrollPhysics(),
-                                        // backgroundDecoration: BoxDecoration(
-                                        //   borderRadius:BorderRadius.all(Radius.circular(20)),
-                                        //   color: Theme.of(context).canvasColor,
-                                        // ),
-                                        // enableRotation: true,
-                                        // loadingBuilder: (context, event) => Center(
-                                        //   child: Container(
-                                        //     width: 30.0,
-                                        //     height: 30.0,
-                                        //     child: CircularProgressIndicator(
-                                        //       backgroundColor:Colors.orange,
-                                        //       value: event == null
-                                        //           ? 0
-                                        //           : event.cumulativeBytesLoaded / event.expectedTotalBytes,
-                                        //     ),
-                                        //   ),
-                                        // ),
                                       ),
                                     ),
                                   ),
@@ -147,81 +131,21 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                                   )
                                 ],
                               ),
-                              // SizedBox(
-                              //   height: size.height * 0.8,
-                              //   width: size.width,
-                              //   child: CarouselSlider(
-                              //     options: CarouselOptions(
-                              //       height: size.height * 0.4,
-                              //       viewportFraction: 1,
-                              //     ),
-                              //     items: [
-                              //       'assets/images/hall2.jpg',
-                              //       'assets/images/hall3.jpg',
-                              //       'assets/images/hall2.jpg',
-                              //       'assets/images/hall1.jpg',
-                              //     ].map((i) {
-                              //       return Builder(
-                              //         builder: (BuildContext context) {
-                              //           return Container(
-                              //             alignment: Alignment.topRight,
-                              //             width:
-                              //                 MediaQuery.of(context).size.width,
-                              //             decoration: BoxDecoration(
-                              //               image: DecorationImage(
-                              //                 fit: BoxFit.cover,
-                              //                 image: AssetImage(
-                              //                   i,
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //             child: IconButton(
-                              //               icon: Icon(
-                              //                 Icons.cancel_rounded,
-                              //                 color: black,
-                              //                 size: 30,
-                              //               ),
-                              //               onPressed: () {
-                              //                 Navigator.pop(context);
-                              //               },
-                              //             ),
-                              //           );
-                              //         },
-                              //       );
-                              //     }).toList(),
-                              //   ),
-                              // ),
                             ],
                           );
                         });
                   },
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: size.height * 0.35,
-                      viewportFraction: 1,
+                  child: Container(
+                    height: size.height * 0.35,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          widget.image,
+                        ),
+                      ),
                     ),
-                    items: [
-                      'assets/images/hall2.jpg',
-                      'assets/images/hall3.jpg',
-                      'assets/images/hall2.jpg',
-                      'assets/images/hall1.jpg',
-                    ].map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                  i,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    }).toList(),
                   ),
                 ),
                 SafeArea(
@@ -252,42 +176,162 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     widget.home.toString(),
                     style: homePage,
                   ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        size: 22,
-                        color: Colors.orange,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '(4.0)',
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.end,
+                            children: List.generate(
+                              5,
+                              (index) => const Icon(
+                                Icons.star,
+                                color: Colors.orange,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          '(5.0)',
                           style: homePageSmall,
+                        )
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Provider.of<LikeProvider>(context, listen: false)
+                          .changeLike(newLike);
+                      // setState(() {
+                      //   like = !like;
+                      // });
+                    },
+                    child: Icon(
+                      newLike ? Icons.favorite_outlined : Icons.favorite_border,
+                      color: primary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              color: primary,
+            ),
+            //Hall details
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Hall Details',
+                    style: homePage,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'See more',
+                            style: seeMorePrimary,
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Provider.of<LikeProvider>(context, listen: false)
-                              .changeLike(newLike);
-                          // setState(() {
-                          //   like = !like;
-                          // });
-                        },
-                        child: Icon(
-                          newLike
-                              ? Icons.favorite_outlined
-                              : Icons.favorite_border,
-                          color: primary,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Booking price:     ',
+                    style: homePageSmall,
+                  ),
+                  Text(
+                    'Rs 20000',
+                    style: homePageSmall,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Max capacity   :     ',
+                    style: homePageSmall,
+                  ),
+                  Text(
+                    '300 persons',
+                    style: homePageSmall,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Opening time:       ',
+                    style: homePageSmall,
+                  ),
+                  Text(
+                    '09:00 Am',
+                    style: homePageSmall,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Closing time:          ',
+                    style: homePageSmall,
+                  ),
+                  Text(
+                    '12:00 Am',
+                    style: homePageSmall,
+                  )
+                ],
+              ),
+            ),
+            Divider(
+              color: primary,
+            ),
+            //address
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Address:',
+                    style: homePage,
                   )
                 ],
               ),
@@ -306,6 +350,10 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             SizedBox(
               height: size.height * 0.01,
             ),
+            Divider(
+              color: primary,
+            ),
+            //about
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -331,82 +379,63 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             SizedBox(
               height: size.height * 0.02,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BookService(
-                          bname: widget.home,
+            //slider
+            Divider(
+              color: primary,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Gallery:',
+                    style: homePage,
+                  )
+                ],
+              ),
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: size.height * 0.35,
+                viewportFraction: 1,
+              ),
+              items: [
+                'assets/images/hall2.jpg',
+                'assets/images/hall3.jpg',
+                'assets/images/hall2.jpg',
+                'assets/images/hall1.jpg',
+              ].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            i,
+                          ),
                         ),
                       ),
                     );
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: primary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    height: size.height * 0.05,
-                    width: size.width * 0.25,
-                    child: Center(
-                      child: Text(
-                        buttonText[0],
-                        style: normWhite,
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    launch('tel://2345678');
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: primary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    height: size.height * 0.05,
-                    width: size.width * 0.25,
-                    child: Center(
-                      child: Text(
-                        buttonText[1],
-                        style: normWhite,
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Review(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: primary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    height: size.height * 0.05,
-                    width: size.width * 0.25,
-                    child: Center(
-                      child: Text(
-                        buttonText[2],
-                        style: normWhite,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                );
+              }).toList(),
             ),
-            SizedBox(
-              height: size.height * 0.02,
+            Divider(
+              color: primary,
+            ),
+            //youtube
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Video:',
+                    style: homePage,
+                  )
+                ],
+              ),
             ),
             Container(
               alignment: Alignment.center,
@@ -417,49 +446,145 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 progressIndicatorColor: primary,
               ),
             ),
+            Divider(
+              color: primary,
+            ),
             SizedBox(
               height: size.height * 0.02,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Row(
-            //     children: [
-            //       Text(
-            //         'Images',
-            //         style: homePage,
-            //       ),
-            //     ],
-            //   ),
+            //Button
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookService(
+                      bname: widget.home,
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: primary,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                height: size.height * 0.06,
+                width: size.width * 0.75,
+                child: Center(
+                  child: Text(
+                    buttonText[0],
+                    style: normWhite,
+                  ),
+                ),
+              ),
+            ),
+            //   ],
             // ),
-            // SingleChildScrollView(
-            //   physics: const BouncingScrollPhysics(),
-            //   scrollDirection: Axis.horizontal,
-            //   child: Row(
-            //     children: List.generate(
-            //       images.length,
-            //       (index) => Padding(
-            //         padding: const EdgeInsets.all(8.0),
-            //         child: Container(
-            //           height: size.height * 0.25,
-            //           width: size.width * 0.5,
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(8),
-            //             image: DecorationImage(
-            //               fit: BoxFit.cover,
-            //               image: AssetImage(
-            //                 images[index],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
-            // SizedBox(
-            //   height: size.height * 0.02,
-            // ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Reviews',
+                    style: homePage,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'See more',
+                            style: seeMorePrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Wrap(
+                children: List.generate(
+                  name.length,
+                  (index) => Wrap(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          left: 15,
+                          right: 15,
+                          bottom: 0,
+                        ),
+                        child: Container(
+                          height: size.height * 0.23,
+                          width: size.width * 1,
+                          child: Card(
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, left: 10, right: 10, bottom: 5),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        name[index],
+                                        style: normPrimary,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            size: 20,
+                                            color: Colors.orange,
+                                          ),
+                                          Text(
+                                            rating[index],
+                                            style: normPrimary,
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, left: 10, right: 10, bottom: 5),
+                                  child: Wrap(
+                                    children: [
+                                      Text(
+                                        'This marriage lawn is excellent. We had an amazing experience here. Loved the decoration and arrangements a lot. We had a really good time here. The food was also amazing and the staff members were super professional and nice. Loved the venue!',
+                                        style: homePageSmall,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

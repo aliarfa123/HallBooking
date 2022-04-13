@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                                         bottomRight: Radius.circular(10),
                                       ),
                                     ),
-                                    height: size.height * 0.07,
+                                    // height: size.height * 0.08,
                                     width: size.width * 0.5,
                                     child: Column(
                                       children: [
@@ -378,7 +378,7 @@ class _HomePageState extends State<HomePage> {
                                         bottomRight: Radius.circular(10),
                                       ),
                                     ),
-                                    height: size.height * 0.07,
+                                    // height: size.height * 0.07,
                                     width: size.width * 0.5,
                                     child: Column(
                                       children: [
