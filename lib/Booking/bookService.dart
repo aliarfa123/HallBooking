@@ -163,7 +163,7 @@ class _BookServiceState extends State<BookService> {
                               style: banquetName,
                             ),
                             TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'Guests',
                               ),
@@ -180,7 +180,7 @@ class _BookServiceState extends State<BookService> {
                               style: banquetName,
                             ),
                             TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'Description',
                               ),
@@ -200,7 +200,7 @@ class _BookServiceState extends State<BookService> {
                                 size: 20,
                                 color: primary,
                               ),
-                              Text('Booked'),
+                              const Text('Booked'),
                               SizedBox(
                                 width: size.width * 0.05,
                               ),
@@ -209,7 +209,7 @@ class _BookServiceState extends State<BookService> {
                                 size: 20,
                                 color: grey,
                               ),
-                              Text('Available'),
+                              const Text('Available'),
                             ],
                           ),
                         ),
