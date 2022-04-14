@@ -1,6 +1,7 @@
 import 'package:banquet_booking/Home/browse.dart';
 import 'package:banquet_booking/banquets/banquetsDetail.dart';
 import 'package:banquet_booking/banquets/seemore.dart';
+import 'package:banquet_booking/stickyheader.dart';
 import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';

@@ -1,5 +1,7 @@
+import 'package:banquet_booking/Home/homepage.dart';
 import 'package:banquet_booking/provider.dart';
 import 'package:banquet_booking/rootApp.dart';
+import 'package:banquet_booking/stickyheader.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'PlusJakartaSans',
           primarySwatch: Colors.blue,
         ),
-        home: const RootApp(),
+        home: RootApp(),
         debugShowCheckedModeBanner: false,
       ),
     );
