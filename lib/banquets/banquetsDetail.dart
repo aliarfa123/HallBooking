@@ -5,6 +5,7 @@ import 'package:banquet_booking/theme/color.dart';
 import 'package:banquet_booking/theme/textStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +27,14 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
   YoutubePlayerController controller = YoutubePlayerController(
     initialVideoId: 'n1Ddj7nsKfg',
     flags: const YoutubePlayerFlags(
+      disableDragSeek: true,
       autoPlay: false,
       mute: false,
     ),
   );
   bool like = false;
   final imageList = [
+    'assets/images/hall1.jpg',
     'assets/images/hall3.jpg',
     'assets/images/hall2.jpg',
     'assets/images/hall1.jpg',
@@ -64,11 +67,15 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
       'This marriage lawn is excellent. We had an\namazing experience here. Loved the decoration and arrangements a lot. We had a really good time here. The food was also amazing and the staff members were super professional and nice. Loved the venue!';
   @override
   Widget build(BuildContext context) {
+    CarouselController buttonCarouselController = CarouselController();
     bool? newLike = Provider.of<LikeProvider>(context).like;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          setState(() {
+            controller.pause();
+          });
           launch('tel://2345678');
         },
         child: CircleAvatar(
@@ -125,6 +132,9 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                                         size: 30,
                                       ),
                                       onPressed: () {
+                                        setState(() {
+                                          controller.pause();
+                                        });
                                         Navigator.pop(dialogContex);
                                       },
                                     ),
@@ -173,6 +183,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 )
               ],
             ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -328,11 +339,31 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Address:',
                     style: homePage,
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            const url =
+                                'https://www.google.com/maps/place/Sector+11-B+Sector+11+B+North+Karachi+Twp,+Karachi,+Karachi+City,+Sindh,+Pakistan/@24.975487,67.0565558,16z/data=!3m1!4b1!4m5!3m4!1s0x3eb340efaea7a9e5:0xd0c1cab5d614d76e!8m2!3d24.9763458!4d67.0598634';
+                            launch(url);
+                          },
+                          child: Text(
+                            'Show in Google Maps',
+                            style: seeMorePrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -394,67 +425,173 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                 ],
               ),
             ),
-            CarouselSlider(
+            CarouselSlider.builder(
               options: CarouselOptions(
-                height: size.height * 0.35,
+                height: size.height * 0.28,
                 viewportFraction: 1,
               ),
-              items: [
-                'assets/images/hall2.jpg',
-                'assets/images/hall3.jpg',
-                'assets/images/hall2.jpg',
-                'assets/images/hall1.jpg',
-              ].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            i,
+              carouselController: buttonCarouselController,
+              itemCount: imageList.length,
+              itemBuilder:
+                  (BuildContext context, int index, int pageViewindex) {
+                return Stack(
+                  children: [
+                    if (index == 0)
+                      Container(
+                        alignment: Alignment.center,
+                        width: size.width,
+                        child: YoutubePlayer(
+                          liveUIColor: primary,
+                          controller: controller,
+                          progressIndicatorColor: primary,
+                        ),
+                      )
+                    else
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (dialogContex) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.transparent,
+                                  insetPadding: const EdgeInsets.all(0),
+                                  actions: [
+                                    Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            // color: Colors.transparent,
+                                            height: size.height * 0.8,
+                                            width: size.width * 1,
+                                            child: PhotoViewGallery.builder(
+                                              itemCount: imageList.length,
+                                              builder: (dialogContex, index) {
+                                                return PhotoViewGalleryPageOptions(
+                                                  imageProvider: AssetImage(
+                                                    imageList[index],
+                                                  ),
+                                                  minScale:
+                                                      PhotoViewComputedScale
+                                                          .contained,
+                                                  maxScale:
+                                                      PhotoViewComputedScale
+                                                              .contained *
+                                                          4,
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: IconButton(
+                                            icon: Icon(
+                                              Icons.cancel_rounded,
+                                              color: white,
+                                              size: 30,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                controller.pause();
+                                              });
+                                              Navigator.pop(dialogContex);
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        child: Container(
+                          height: size.height * 0.28,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                imageList[index],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    );
-                  },
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                          onPressed: () {
+                            buttonCarouselController.nextPage(
+                              duration: const Duration(
+                                milliseconds: 500,
+                              ),
+                              curve: Curves.easeInBack,
+                            );
+                          },
+                          icon: Icon(
+                            Icons.navigate_next_outlined,
+                            color: white,
+                            size: 40,
+                          )),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                          onPressed: () {
+                            buttonCarouselController.previousPage(
+                              duration: const Duration(
+                                milliseconds: 500,
+                              ),
+                              curve: Curves.easeInBack,
+                            );
+                          },
+                          icon: Icon(
+                            Icons.navigate_before_outlined,
+                            color: white,
+                            size: 40,
+                          )),
+                    )
+                  ],
                 );
-              }).toList(),
+              },
             ),
             Divider(
               color: primary,
             ),
             //youtube
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Video:',
-                    style: homePage,
-                  )
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              width: size.width * 0.95,
-              child: YoutubePlayer(
-                liveUIColor: primary,
-                controller: controller,
-                progressIndicatorColor: primary,
-              ),
-            ),
-            Divider(
-              color: primary,
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         'Video:',
+            //         style: homePage,
+            //       )
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   alignment: Alignment.center,
+            //   width: size.width * 0.95,
+            //   child: YoutubePlayer(
+            //     liveUIColor: primary,
+            //     controller: controller,
+            //     progressIndicatorColor: primary,
+            //   ),
+            // ),
+            // Divider(
+            //   color: primary,
+            // ),
             SizedBox(
               height: size.height * 0.02,
             ),
             //Button
             InkWell(
               onTap: () {
+                setState(() {
+                  controller.pause();
+                });
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -484,6 +621,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
             SizedBox(
               height: size.height * 0.02,
             ),
+            //reviews
             Padding(
               padding: const EdgeInsets.all(15),
               child: Row(
@@ -498,7 +636,17 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                     child: Row(
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              controller.pause();
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Review(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'See more',
                             style: seeMorePrimary,
@@ -589,5 +737,36 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
         ),
       ),
     );
+  }
+}
+
+class RenderStickySliver extends RenderSliverSingleBoxAdapter {
+  RenderStickySliver({RenderBox? child}) : super(child: child);
+  @override
+  void performLayout() {
+    void myCurrentConstraints = constraints;
+    geometry = SliverGeometry.zero;
+    child?.layout(
+      constraints.asBoxConstraints(),
+      parentUsesSize: true,
+    );
+
+    double childExtent = child?.size.height ?? 0;
+
+    geometry = SliverGeometry(
+      paintExtent: childExtent,
+      maxPaintExtent: childExtent,
+      paintOrigin: constraints.scrollOffset,
+    );
+    setChildParentData(child!, constraints, geometry!);
+  }
+}
+
+class StickySliver extends SingleChildRenderObjectWidget {
+  const StickySliver({Widget? child, Key? key}) : super(child: child, key: key);
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return RenderStickySliver();
   }
 }

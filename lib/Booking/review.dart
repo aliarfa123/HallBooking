@@ -138,21 +138,26 @@ class _ReviewState extends State<Review> {
                       });
                 }),
                 child: Container(
-                  height: size.height * 0.07,
-                  width: size.width * 0.7,
+                  height: size.height * 0.06,
+                  width: size.width * 0.6,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(108, 2, 42, 1),
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+                      Radius.circular(10),
                     ),
                   ),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Add review',
+                        'Add Review  ',
                         style: pageTitle,
                       ),
+                      Icon(
+                        Icons.rate_review,
+                        color: white,
+                      )
                     ],
                   ),
                 ),

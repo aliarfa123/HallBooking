@@ -19,9 +19,14 @@ class _BookServiceState extends State<BookService> {
     'Morning',
     'Night',
   ];
+  var _maxGuest = 100;
+  var perHead = 400;
+  var total;
 
+  TextEditingController _maxGuestControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    total = _maxGuest * perHead;
     DateTime selectedDate = DateTime.now();
     Future<void> _selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
@@ -100,7 +105,7 @@ class _BookServiceState extends State<BookService> {
                       color: white,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(10))),
-                  height: size.height * 0.62,
+                  height: size.height * 0.7,
                   child: Padding(
                     padding: EdgeInsets.only(top: 20, left: 20, right: 15),
                     child: Column(
@@ -146,7 +151,9 @@ class _BookServiceState extends State<BookService> {
                               icon: Icon(Icons.keyboard_arrow_down),
                               items: items.map((String items) {
                                 return DropdownMenuItem(
-                                    value: items, child: Text(items));
+                                  value: items,
+                                  child: Text(items),
+                                );
                               }).toList(),
                               onChanged: (newValue) {
                                 setState(() {
@@ -163,14 +170,66 @@ class _BookServiceState extends State<BookService> {
                               style: banquetName,
                             ),
                             TextFormField(
-                              decoration: const InputDecoration(
+                              controller: _maxGuestControler,
+                              decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: 'Guests',
+                                hintText: '$_maxGuest',
                               ),
-                              // keyboardType: TextInputType.multiline,
+                              keyboardType: TextInputType.phone,
                               // minLines: ,
                               // maxLines: 5,
                             ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Slider(
+                                    value: _maxGuest.toDouble(),
+                                    min: 1,
+                                    max: 500,
+                                    divisions: 100,
+                                    activeColor: primary,
+                                    inactiveColor: grey,
+                                    label: '$_maxGuest',
+                                    onChanged: (double newValue) {
+                                      setState(() {
+                                        // if (_maxGuestControler.text == '') {
+                                        //   _maxGuest = newValue.round();
+                                        //   _maxGuestControler.text =
+                                        //       _maxGuest.toString();
+                                        // } else {
+                                        //   _maxGuestControler.text =
+                                        //       newValue.toString();
+                                        //   _maxGuest = newValue.round();
+                                        // _maxGuest =
+                                        //     _maxGuestControler.text as int;
+                                        // }
+                                        // _maxGuest =
+                                        //     _maxGuestControler.text as int;
+                                        _maxGuestControler.text =
+                                            _maxGuest.toString();
+                                        _maxGuest = newValue.round();
+                                        // newValue =
+                                        //     _maxGuestControler.text as double;
+                                        total = perHead * _maxGuest;
+                                      });
+                                    },
+                                    // semanticFormatterCallback:
+                                    //     (double newValue) {
+                                    //   return '${newValue.round()} dollars';
+                                    // },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Total: $perHead * $_maxGuest = $total',
+                                  style: homePageSmall,
+                                ),
+                              ],
+                            )
                           ],
                         ),
                         Wrap(
@@ -279,21 +338,3 @@ class _BookServiceState extends State<BookService> {
     );
   }
 }
-
-
-// DatePicker.showTimePicker(context,
-                                //     theme: const DatePickerTheme(
-                                //       containerHeight: 210.0,
-                                //     ),
-                                //     showTitleActions: true, onConfirm: (_time) {
-                                //   print(
-                                //       'confirm ${_time.toString().split(' ').last}');
-                                //   time =
-                                //       '${_time.hour}:${_time.minute}:${_time.second}';
-                                //   setState(() {
-                                //     print(time);
-                                //   });
-                                // },
-                                //     currentTime: DateTime.now(),
-                                //     locale: LocaleType.en);
-                                // setState(() {});
