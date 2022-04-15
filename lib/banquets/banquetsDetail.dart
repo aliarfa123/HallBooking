@@ -79,7 +79,6 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
         slivers: <Widget>[
           SliverAppBar(
             collapsedHeight: 100,
-            // backgroundColor: primary,
             pinned: true,
             floating: false,
             expandedHeight: 280.0,
@@ -496,148 +495,170 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                             ],
                           ),
                         ),
-                        CarouselSlider.builder(
-                          options: CarouselOptions(
-                            height: size.height * 0.28,
-                            viewportFraction: 1,
-                          ),
-                          carouselController: buttonCarouselController,
-                          itemCount: imageList.length,
-                          itemBuilder: (BuildContext context, int index,
-                              int pageViewindex) {
-                            return Stack(
-                              children: [
-                                if (index == 0)
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: size.width,
-                                    child: YoutubePlayer(
-                                      liveUIColor: primary,
-                                      controller: controller,
-                                      progressIndicatorColor: primary,
-                                    ),
-                                  )
-                                else
-                                  InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (dialogContex) {
-                                            return AlertDialog(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              insetPadding:
-                                                  const EdgeInsets.all(0),
-                                              actions: [
-                                                Stack(
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: SizedBox(
-                                                        // color: Colors.transparent,
-                                                        height:
-                                                            size.height * 0.8,
-                                                        width: size.width * 1,
-                                                        child: PhotoViewGallery
-                                                            .builder(
-                                                          itemCount:
-                                                              imageList.length,
-                                                          builder:
-                                                              (dialogContex,
-                                                                  index) {
-                                                            return PhotoViewGalleryPageOptions(
-                                                              imageProvider:
-                                                                  AssetImage(
-                                                                imageList[
-                                                                    index],
-                                                              ),
-                                                              minScale:
-                                                                  PhotoViewComputedScale
-                                                                      .contained,
-                                                              maxScale:
-                                                                  PhotoViewComputedScale
-                                                                          .contained *
-                                                                      4,
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.topRight,
-                                                      child: IconButton(
-                                                        icon: Icon(
-                                                          Icons.cancel_rounded,
-                                                          color: white,
-                                                          size: 30,
-                                                        ),
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            controller.pause();
-                                                          });
-                                                          Navigator.pop(
-                                                              dialogContex);
-                                                        },
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    child: Container(
-                                      height: size.height * 0.28,
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                            imageList[index],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                        Container(
+                          height: size.height * 0.28,
+                          width: double.infinity,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: CarouselSlider.builder(
+                                  options: CarouselOptions(
+                                    height: size.height * 0.28,
+                                    viewportFraction: 1,
                                   ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: IconButton(
-                                      onPressed: () {
-                                        buttonCarouselController.nextPage(
-                                          duration: const Duration(
-                                            milliseconds: 500,
+                                  carouselController: buttonCarouselController,
+                                  itemCount: imageList.length,
+                                  itemBuilder: (BuildContext context, int index,
+                                      int pageViewindex) {
+                                    return Row(
+                                      children: [
+                                        if (index == 0)
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: size.width,
+                                            child: YoutubePlayer(
+                                              liveUIColor: primary,
+                                              controller: controller,
+                                              progressIndicatorColor: primary,
+                                            ),
+                                          )
+                                        else
+                                          InkWell(
+                                            onTap: () {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (dialogContex) {
+                                                    return AlertDialog(
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      insetPadding:
+                                                          const EdgeInsets.all(
+                                                              0),
+                                                      actions: [
+                                                        Stack(
+                                                          children: [
+                                                            Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              child: SizedBox(
+                                                                // color: Colors.transparent,
+                                                                height:
+                                                                    size.height *
+                                                                        0.8,
+                                                                width:
+                                                                    size.width *
+                                                                        1,
+                                                                child:
+                                                                    PhotoViewGallery
+                                                                        .builder(
+                                                                  itemCount:
+                                                                      imageList
+                                                                          .length,
+                                                                  builder:
+                                                                      (dialogContex,
+                                                                          index) {
+                                                                    return PhotoViewGalleryPageOptions(
+                                                                      imageProvider:
+                                                                          AssetImage(
+                                                                        imageList[
+                                                                            index],
+                                                                      ),
+                                                                      minScale:
+                                                                          PhotoViewComputedScale
+                                                                              .contained,
+                                                                      maxScale:
+                                                                          PhotoViewComputedScale.contained *
+                                                                              4,
+                                                                    );
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topRight,
+                                                              child: IconButton(
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .cancel_rounded,
+                                                                  color: white,
+                                                                  size: 30,
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    controller
+                                                                        .pause();
+                                                                  });
+                                                                  Navigator.pop(
+                                                                      dialogContex);
+                                                                },
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    );
+                                                  });
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.28,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: AssetImage(
+                                                    imageList[index],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                          curve: Curves.easeInBack,
-                                        );
-                                      },
-                                      icon: Icon(
-                                        Icons.navigate_next_outlined,
-                                        color: white,
-                                        size: 40,
-                                      )),
+                                      ],
+                                    );
+                                  },
                                 ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                      onPressed: () {
-                                        buttonCarouselController.previousPage(
-                                          duration: const Duration(
-                                            milliseconds: 500,
-                                          ),
-                                          curve: Curves.easeInBack,
-                                        );
-                                      },
-                                      icon: Icon(
-                                        Icons.navigate_before_outlined,
-                                        color: white,
-                                        size: 40,
-                                      )),
-                                )
-                              ],
-                            );
-                          },
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: IconButton(
+                                    onPressed: () {
+                                      buttonCarouselController.nextPage(
+                                        duration: const Duration(
+                                          milliseconds: 500,
+                                        ),
+                                        curve: Curves.easeInBack,
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.navigate_next_outlined,
+                                      color: white,
+                                      size: 40,
+                                    )),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: IconButton(
+                                    onPressed: () {
+                                      buttonCarouselController.previousPage(
+                                        duration: const Duration(
+                                          milliseconds: 500,
+                                        ),
+                                        curve: Curves.easeInBack,
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.navigate_before_outlined,
+                                      color: white,
+                                      size: 40,
+                                    )),
+                              )
+                            ],
+                          ),
                         ),
                         Divider(
                           color: primary,
