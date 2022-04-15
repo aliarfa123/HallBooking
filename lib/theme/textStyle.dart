@@ -14,7 +14,7 @@ var table = TextStyle(
   color: secondary,
 );
 var homePageSmall = TextStyle(
-  fontSize: 15,
+  fontSize: 14,
   fontWeight: FontWeight.bold,
   color: secondary,
 );

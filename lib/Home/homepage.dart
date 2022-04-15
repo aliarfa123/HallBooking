@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Text(
                             'See More',
-                            style: seeMore,
+                            style: seeMorePrimary,
                           ),
                         ),
                       ],
@@ -208,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                                               padding:
                                                   const EdgeInsets.all(4.0),
                                               child: Text(
-                                                'Rs. 65000',
+                                                'Rs.650 per head',
                                                 style: homePageSmall,
                                               ),
                                             ),

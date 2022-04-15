@@ -318,27 +318,28 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Hall Details',
                                 style: homePage,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        'See more',
-                                        style: seeMorePrimary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: Row(
+                              //     mainAxisAlignment: MainAxisAlignment.end,
+                              //     children: [
+                              //       TextButton(
+                              //         onPressed: () {},
+                              //         child: Text(
+                              //           'See more',
+                              //           style: seeMorePrimary,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                            
                             ],
                           ),
                         ),
@@ -351,7 +352,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                                 style: homePageSmall,
                               ),
                               Text(
-                                'Rs 20000',
+                                'Rs. 650 per person',
                                 style: homePageSmall,
                               )
                             ],
