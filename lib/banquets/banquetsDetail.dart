@@ -495,7 +495,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: size.height * 0.28,
                           width: double.infinity,
                           child: Stack(
@@ -663,30 +663,6 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                         Divider(
                           color: primary,
                         ),
-                        //youtube
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Row(
-                        //     children: [
-                        //       Text(
-                        //         'Video:',
-                        //         style: homePage,
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
-                        // Container(
-                        //   alignment: Alignment.center,
-                        //   width: size.width * 0.95,
-                        //   child: YoutubePlayer(
-                        //     liveUIColor: primary,
-                        //     controller: controller,
-                        //     progressIndicatorColor: primary,
-                        //   ),
-                        // ),
-                        // Divider(
-                        //   color: primary,
-                        // ),
                         SizedBox(
                           height: size.height * 0.02,
                         ),
