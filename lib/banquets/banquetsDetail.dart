@@ -339,7 +339,6 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                               //     ],
                               //   ),
                               // ),
-                            
                             ],
                           ),
                         ),
@@ -443,7 +442,7 @@ class _BanquetsDetailState extends State<BanquetsDetail> {
                           child: Wrap(
                             children: [
                               Text(
-                                'Defence Phase 1, Adjacent PSO Pump, Near KPT InterchangeØŒ Defence View Housing Society, Karachi, Karachi City, Sindh 75500',
+                                'Defence Phase 1, Adjacent PSO Pump, Near KPT Interchange Defence View Housing Society, Karachi, Karachi City, Sindh 75500',
                                 style: homePageSmall,
                               ),
                             ],
